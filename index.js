@@ -4,6 +4,7 @@ const { AdminUIApp } = require("@keystonejs/app-admin-ui");
 const { Text } = require("@keystonejs/fields");
 const { MongooseAdapter } = require("@keystonejs/adapter-mongoose");
 const Stars = require("./custom-field/Stars");
+const MultiCheck = require("./custom-field/MultiCheck");
 
 const keystone = new Keystone({
   name: "custom-field",
@@ -12,7 +13,11 @@ const keystone = new Keystone({
 
 keystone.createList("Thing", {
   fields: {
-    rating: { type: Stars, starCount: 5 }
+    rating: { type: Stars, starCount: 5 },
+    multiCheck: {
+      type: MultiCheck,
+      defaultValue: { one: true, two: false, three: false }
+    }
   }
 });
 
